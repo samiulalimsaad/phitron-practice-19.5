@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block title %}Musicians List{% endblock title %}
+{%block content %}
+<h1 class="text-3xl font-bold mb-8">Albums</h1>
+<a
+    href="{% url 'add_album' %}"
+    class="bg-blue-500 text-white p-2 mb-4 inline-block"
+    >Add Album</a
+>
+
+<table class="min-w-full bg-white border border-gray-300">
+    <!-- Table Headers -->
+    <thead>
+        <tr>
+            <th class="border-b p-2">ID</th>
+            <th class="border-b p-2">Album Name</th>
+            <th class="border-b p-2">Release Date</th>
+            <th class="border-b p-2">Rating</th>
+            <th class="border-b p-2">Actions</th>
+        </tr>
+    </thead>
+    <!-- Table Body -->
+    <tbody>
+        {% for album in albums %}
+        <tr>
+            <td class="border-b p-2">{{ album.id }}</td>
+            <td class="border-b p-2">
+                <a href="{% url 'edit_album' album.id %}"
+                    >{{ album.album_name }}</a
+                >
+            </td>
+            <td class="border-b p-2">{{ album.release_date|date:"d-M-Y" }}</td>
+            <td class="border-b p-2">{{ album.rating }}</td>
+            <td class="border-b p-2">
+                <a href="{% url 'edit_album' album.id %}" class="text-blue-500"
+                    >Edit</a
+                >
+                <a
+                    href="{% url 'delete_album' album.id %}"
+                    class="text-red-500 ml-2"
+                    >Delete</a
+                >
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

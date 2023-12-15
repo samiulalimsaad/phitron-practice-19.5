@@ -1,0 +1,13 @@
+<!-- delete_album_confirm.html -->
+
+{% extends 'base.html' %} {% block title %}Confirm Delete Album{% endblock %} {%
+block content %}
+<h1 class="text-3xl font-bold mb-8">Confirm Delete Album</h1>
+<p>Are you sure you want to delete {{ album.album_name }}?</p>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <button type="submit" class="bg-red-500 text-white p-2">
+        Confirm Delete
+    </button>
+</form>
+{% endblock %}

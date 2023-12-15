@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block title %}Musicians List{% endblock title %}
+{%block content %}
+<h1 class="text-3xl font-bold mb-8">Musicians</h1>
+<a
+    href="{% url 'add_musician' %}"
+    class="bg-blue-500 text-white p-2 mb-4 inline-block"
+    >Add Musician</a
+>
+
+<table class="min-w-full bg-white border border-gray-300">
+    <!-- Table Headers -->
+    <thead>
+        <tr>
+            <th class="border-b p-2">ID</th>
+            <th class="border-b p-2">Musician Name</th>
+            <th class="border-b p-2">Email</th>
+            <th class="border-b p-2">Instrument Type</th>
+            <th class="border-b p-2">Actions</th>
+        </tr>
+    </thead>
+    <!-- Table Body -->
+    <tbody>
+        {% for musician in musicians %}
+        <tr>
+            <td class="border-b p-2">{{ musician.id }}</td>
+            <td class="border-b p-2">
+                <a href="{% url 'edit_musician' musician.id %}"
+                    >{{ musician.first_name }} {{ musician.last_name }}</a
+                >
+            </td>
+            <td class="border-b p-2">{{ musician.email }}</td>
+            <td class="border-b p-2">{{ musician.instrument_type }}</td>
+            <td class="border-b p-2">
+                <a
+                    href="{% url 'edit_musician' musician.id %}"
+                    class="text-blue-500"
+                    >Edit</a
+                >
+                <a
+                    href="{% url 'delete_musician' musician.id %}"
+                    class="text-red-500 ml-2"
+                    >Delete</a
+                >
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
