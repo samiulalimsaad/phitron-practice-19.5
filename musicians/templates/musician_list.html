@@ -15,7 +15,9 @@
             <th class="border-b p-2">Musician Name</th>
             <th class="border-b p-2">Email</th>
             <th class="border-b p-2">Instrument Type</th>
+            {% if user.is_authenticated %}
             <th class="border-b p-2">Actions</th>
+            {% endif %}
         </tr>
     </thead>
     <!-- Table Body -->
@@ -30,6 +32,7 @@
             </td>
             <td class="border-b p-2">{{ musician.email }}</td>
             <td class="border-b p-2">{{ musician.instrument_type }}</td>
+            {% if user.is_authenticated %}
             <td class="border-b p-2">
                 <a
                     href="{% url 'edit_musician' musician.id %}"
@@ -42,6 +45,7 @@
                     >Delete</a
                 >
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

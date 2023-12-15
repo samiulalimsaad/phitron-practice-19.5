@@ -15,7 +15,9 @@
             <th class="border-b p-2">Album Name</th>
             <th class="border-b p-2">Release Date</th>
             <th class="border-b p-2">Rating</th>
+            {% if user.is_authenticated %}
             <th class="border-b p-2">Actions</th>
+            {% endif %}
         </tr>
     </thead>
     <!-- Table Body -->
@@ -30,6 +32,7 @@
             </td>
             <td class="border-b p-2">{{ album.release_date|date:"d-M-Y" }}</td>
             <td class="border-b p-2">{{ album.rating }}</td>
+            {% if user.is_authenticated %}
             <td class="border-b p-2">
                 <a href="{% url 'edit_album' album.id %}" class="text-blue-500"
                     >Edit</a
@@ -40,6 +43,7 @@
                     >Delete</a
                 >
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

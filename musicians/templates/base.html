@@ -7,9 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{% block title %}My Django App{% endblock title %}</title>
         <link
-            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.4.20/dist/full.min.css"
             rel="stylesheet"
+            type="text/css"
         />
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="">
         <!-- Navigation Bar -->
@@ -31,12 +33,32 @@
                             >Albums</a
                         >
                     </li>
+                    {% if user.is_authenticated %}
+                    <li><a class="text-white" href="/logout/">Logout</a></li>
+                    {% else %}
+                    <li><a class="text-white" href="/login/">Login</a></li>
+                    <li><a class="text-white" href="/signup/">Signup</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
 
         <div class="container mx-auto p-8">
-            {% block content %}{% endblock content %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li
+                    {%if
+                    message.tags%}
+                    class="alert alert-{{ message.tags }}"
+                    {%endif
+                    %}
+                >
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %} {% block content %}{% endblock content %}
         </div>
     </body>
 </html>
