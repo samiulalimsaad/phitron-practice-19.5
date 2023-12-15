@@ -27,6 +27,9 @@ from musicians.views import (
     edit_musician,
     index,
     musician_list,
+    register,
+    user_login,
+    user_logout,
 )
 
 urlpatterns = [
@@ -42,4 +45,7 @@ urlpatterns = [
     path("albums/add/", add_album, name="add_album"),
     path("albums/<int:album_id>/edit/", edit_album, name="edit_album"),
     path("albums/<int:album_id>/delete/", delete_album, name="delete_album"),
+    path("login/", user_login, name="login"),
+    path("logout/", user_logout, name="logout"),
+    path("signup/", register, name="signup"),
 ]
